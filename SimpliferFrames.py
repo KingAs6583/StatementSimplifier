@@ -41,9 +41,9 @@ class DataFramePreview(wx.Frame):
             try:
                 #  df is  DataFrame
                 if pathname.endswith('.xlsx'):
-                    self.df.to_excel('Ledger_' + pathname, index=False)
+                    self.df.to_excel(pathname, index=False)
                 elif pathname.endswith('.csv'):
-                    self.df.to_csv('Ledger_' + pathname, index=False)
+                    self.df.to_csv(pathname, index=False)
                 del self.df
                 self.Destroy()
             except IOError:

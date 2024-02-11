@@ -179,7 +179,7 @@ class RightSidePanel(wx.Panel):
         self.remove_col_btn = wx.Button(self, label="Remove Columns")
         self.sizer.Add(self.remove_col_btn, 0, wx.EXPAND | wx.ALL, 5)
 
-        self.bank_ledger_btn = wx.Button(self, label="Stmt Ledger")
+        self.bank_ledger_btn = wx.Button(self, label="Generate Ledger")
         self.sizer.Add(self.bank_ledger_btn, 0, wx.EXPAND | wx.ALL, 5)
 
         self.edit_btn = wx.Button(self, label="Edit Stmt")

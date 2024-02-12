@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b8f80b6-f108-4955-866d-7e6533d4bd16" name="Changes" comment="updated">
+    <list default="true" id="5b8f80b6-f108-4955-866d-7e6533d4bd16" name="Changes" comment="Fix generate Ledger">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpliferFrames.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpliferFrames.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainFrame.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainFrame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpliferPanels.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpliferPanels.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,13 +132,22 @@
       <option name="project" value="LOCAL" />
       <updated>1707650064417</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix generate Ledger">
+      <option name="closed" value="true" />
+      <created>1707662433237</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707662433237</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Readme.md" />
     <MESSAGE value="Added requirements.txt" />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="Fix generate Ledger" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix generate Ledger" />
   </component>
 </project>

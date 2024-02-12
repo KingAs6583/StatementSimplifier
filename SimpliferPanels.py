@@ -111,14 +111,15 @@ class LeftSidePanel(wx.Panel):
             # Read data from an Excel file
             df = read_stmt(pathname)
             self.display_panel.stmt = df
-            self.display_panel.setup_grid_df(df, None)
-            # Create a grid and set it to fill the right panel
-            self.display_panel.table_grid.CreateGrid(len(df.index), len(df.columns))
-            self.display_panel.table_grid.update_grid_col()
-            self.display_panel.display_sizer = wx.BoxSizer(wx.VERTICAL)
-            self.display_panel.display_sizer.Add(self.display_panel.table_grid, 1, wx.EXPAND)
-            self.display_panel.SetSizer(self.display_panel.display_sizer)
-            self.display_panel.Layout()
+            if df is not None:
+                self.display_panel.setup_grid_df(df, None)
+                # Create a grid and set it to fill the right panel
+                self.display_panel.table_grid.CreateGrid(len(df.index), len(df.columns))
+                self.display_panel.table_grid.update_grid_col()
+                self.display_panel.display_sizer = wx.BoxSizer(wx.VERTICAL)
+                self.display_panel.display_sizer.Add(self.display_panel.table_grid, 1, wx.EXPAND)
+                self.display_panel.SetSizer(self.display_panel.display_sizer)
+                self.display_panel.Layout()
         except IOError:
             wx.LogError("Cannot open file '%s'." % pathname)
         except AttributeError:

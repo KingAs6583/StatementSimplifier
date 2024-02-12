@@ -1,6 +1,7 @@
 import wx
 import sys
 import os
+import pkg_resources
 from SimpliferPanels import (DisplaySidePanel, LeftSidePanel, RightSidePanel)
 
 
@@ -54,15 +55,16 @@ class MainFrame(wx.Frame):
         Args:
             event (_type_): _description_
         """
-        self.left_panel.Hide()
-        self.right_panel.set_stmt(self.display_panel.stmt)
-        self.right_panel.set_table_grid(self.display_panel.table_grid)
-        # onclick back btn
-        self.right_panel.back_btn.Bind(wx.EVT_BUTTON, self.navigate_left_panel)
-        # self.sizer.Replace(self.left_panel,self.right_panel)
-        self.right_panel.Show()
-        self.right_panel.SetSizer(self.right_panel_sizer)
-        self.parentPanel.Layout()
+        if self.display_panel.stmt is not None:
+            self.left_panel.Hide()
+            self.right_panel.set_stmt(self.display_panel.stmt)
+            self.right_panel.set_table_grid(self.display_panel.table_grid)
+            # onclick back btn
+            self.right_panel.back_btn.Bind(wx.EVT_BUTTON, self.navigate_left_panel)
+            # self.sizer.Replace(self.left_panel,self.right_panel)
+            self.right_panel.Show()
+            self.right_panel.SetSizer(self.right_panel_sizer)
+            self.parentPanel.Layout()
 
     def navigate_left_panel(self, event) -> None:
         """_summary_
@@ -113,10 +115,15 @@ def resource_path(relative_path):
 
 if __name__ == "__main__":
     app = wx.App(False)
-    image = wx.Image(resource_path("Icons/icon.png"), wx.BITMAP_TYPE_ANY)
-    scaled_image = image.Scale(48, 48, wx.IMAGE_QUALITY_HIGH)
-    icon = wx.Icon(wx.Bitmap(scaled_image))
     # Set the icon for the frame
     frame = MainFrame()
-    frame.SetIcon(icon)
+    try:
+        icon_path = resource_path("Icons/icon.png")
+        print(icon_path)
+        image = wx.Image(icon_path, wx.BITMAP_TYPE_ANY)
+        scaled_image = image.Scale(48, 48, wx.IMAGE_QUALITY_HIGH)
+        icon = wx.Icon(wx.Bitmap(scaled_image))
+        frame.SetIcon(icon)
+    except:
+        pass
     app.MainLoop()

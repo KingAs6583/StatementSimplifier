@@ -28,9 +28,9 @@ class LeftSidePanel(wx.Panel):
         self.stmt_with_dr_cr = None
         self.left_panel_sizer = left_panel_sizer
         # set display panel reference for class level
-        self.display_panel: DisplaySidePanel | wx.Panel = display_panel
+        self.display_panel: DisplaySidePanel  = display_panel
         # Add a static text
-        self.side_title_text = wx.StaticText(self, label="Simplify your Statements", pos=(25, 25),
+        self.side_title_text = wx.StaticText(self, label="Simplify your\n Statements", pos=(25, 25),
                                              style=wx.ALIGN_CENTER)
         self.side_title_text.BackgroundColour = "white"
         self.side_title_text.ForegroundColour = "#333333"
@@ -92,7 +92,7 @@ class LeftSidePanel(wx.Panel):
         hr_line = wx.StaticLine(self)
         self.left_panel_sizer.Add(hr_line, 0, wx.ALL | wx.EXPAND, 5)
 
-    def get_file_path(self) -> str | None:
+    def get_file_path(self) -> str :
         # Create a file dialog
         with wx.FileDialog(self, "Open Excel file",
                            wildcard="Excel files (*.xlsx)|*.xlsx|CSV files (*.csv)|*.csv") as file_dialog:
@@ -111,14 +111,15 @@ class LeftSidePanel(wx.Panel):
             # Read data from an Excel file
             df = read_stmt(pathname)
             self.display_panel.stmt = df
-            self.display_panel.setup_grid_df(df, None)
-            # Create a grid and set it to fill the right panel
-            self.display_panel.table_grid.CreateGrid(len(df.index), len(df.columns))
-            self.display_panel.table_grid.update_grid_col()
-            self.display_panel.display_sizer = wx.BoxSizer(wx.VERTICAL)
-            self.display_panel.display_sizer.Add(self.display_panel.table_grid, 1, wx.EXPAND)
-            self.display_panel.SetSizer(self.display_panel.display_sizer)
-            self.display_panel.Layout()
+            if df is not None:
+                self.display_panel.setup_grid_df(df, None)
+                # Create a grid and set it to fill the right panel
+                self.display_panel.table_grid.CreateGrid(len(df.index), len(df.columns))
+                self.display_panel.table_grid.update_grid_col()
+                self.display_panel.display_sizer = wx.BoxSizer(wx.VERTICAL)
+                self.display_panel.display_sizer.Add(self.display_panel.table_grid, 1, wx.EXPAND)
+                self.display_panel.SetSizer(self.display_panel.display_sizer)
+                self.display_panel.Layout()
         except IOError:
             wx.LogError("Cannot open file '%s'." % pathname)
         except AttributeError:
@@ -129,8 +130,8 @@ class DisplaySidePanel(wx.Panel):
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
         # Create a grid table
-        self.table_grid: TableGrid | None = None
-        self.stmt: pandas.DataFrame | None = None
+        self.table_grid: TableGrid  = None
+        self.stmt: pandas.DataFrame  = None
         self.display_sizer = None
 
     def new_grid(self) -> None:
@@ -158,7 +159,7 @@ class RightSidePanel(wx.Panel):
         self.table_grid = display_panel.table_grid
         self.stmt: pandas.DataFrame = display_panel.stmt
         self.sizer = sizer
-        self.stmt_simplifier: StatementSimplifier | None = None
+        self.stmt_simplifier: StatementSimplifier  = None
         self.create_buttons()
         self.bind_buttons()
         self.set_hint_on_buttons()
@@ -235,7 +236,7 @@ class RightSidePanel(wx.Panel):
             self.table_grid.set_col_header_names()
             self.table_grid.update_grid_col()
 
-    def get_file_path(self) -> str | None:
+    def get_file_path(self) -> str :
         # Create a file dialog
         with wx.FileDialog(self, "Open Excel file", wildcard="Excel files (*.xlsx)|*.xlsx") as file_dialog:
             file_dialog: wx.FileDialog = file_dialog

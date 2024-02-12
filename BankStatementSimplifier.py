@@ -1,7 +1,7 @@
 import pandas
 import re
 
-def list_str(data: list | str, by=True) -> str:
+def list_str(data: list, by=True) -> str:
     """_summary_
 
     Args:
